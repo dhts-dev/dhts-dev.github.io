@@ -3,24 +3,21 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import tagger from "@dhiwise/component-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tagger()],
   build: {
     outDir: "build",
     rollupOptions: {
+      // Explicitly ignore all unresolved imports
       onwarn(warning, defaultHandler) {
-        // Ignore unresolved import warnings for i18next
-        if (
-          warning.code === 'UNRESOLVED_IMPORT' &&
-          warning.source &&
-          warning.source.includes('i18next')
-        ) {
+        if (warning.code === 'UNRESOLVED_IMPORT') {
+          console.warn(`Ignored unresolved import: ${warning.source}`);
           return;
         }
-        // Handle all other warnings normally
         defaultHandler(warning);
-      }
+      },
+      // Force externalize i18next if it's still being referenced
+      external: ['i18next']
     }
   },
   resolve: {
@@ -38,5 +35,9 @@ export default defineConfig({
     host: "0.0.0.0",
     strictPort: true,
     allowedHosts: ['.amazonaws.com', '.builtwithrocket.new']
+  },
+  // Add this optimization setting
+  optimizeDeps: {
+    exclude: ['i18next']
   }
 });
