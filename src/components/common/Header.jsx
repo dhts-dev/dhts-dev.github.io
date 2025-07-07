@@ -6,7 +6,8 @@ const Header = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); // 'resources' | 'company' | null
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
   const resourcesDropdownRef = useRef(null);
   const companyDropdownRef = useRef(null);
   const userDropdownRef = useRef(null);
@@ -30,27 +31,43 @@ const Header = () => {
     { name: 'Company Policy', href: '/company/policy' }
   ];
 
-  // Close all dropdowns when mouse leaves nav
+  // Close dropdowns with delay when leaving nav
   const handleNavLeave = () => {
-    setOpenDropdown(null);
-    setShowUserDropdown(false);
+    setHoverTimeout(
+      setTimeout(() => {
+        setOpenDropdown(null);
+        setShowUserDropdown(false);
+      }, 300)
+    );
   };
 
+  // Clear timeout when entering dropdown
+  const handleDropdownEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  };
+
+  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
         setShowUserDropdown(false);
       }
+      if (resourcesDropdownRef.current && !resourcesDropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+      if (companyDropdownRef.current && !companyDropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
     }
-    if (showUserDropdown) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
+
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showUserDropdown]);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200">
@@ -73,8 +90,8 @@ const Header = () => {
                   key={item.name}
                   to={item.href}
                   className={`text-base font-medium transition-colors duration-200 ${
-                    location.pathname === item.href 
-                      ? 'text-[#f7931e]' 
+                    location.pathname === item.href
+                      ? 'text-[#f7931e]'
                       : 'text-gray-700 hover:text-[#f7931e]'
                   }`}
                 >
@@ -83,15 +100,22 @@ const Header = () => {
               ))}
 
               {/* Resources Dropdown */}
-              <div className="relative" ref={resourcesDropdownRef}>
+              <div
+                className="relative"
+                ref={resourcesDropdownRef}
+                onMouseEnter={handleDropdownEnter}
+              >
                 <button
                   type="button"
                   className={`text-base font-medium transition-colors duration-200 ${
-                    location.pathname.startsWith('/resources') 
-                      ? 'text-[#f7931e]' 
+                    location.pathname.startsWith('/resources')
+                      ? 'text-[#f7931e]'
                       : 'text-gray-700 hover:text-[#f7931e]'
                   }`}
-                  onMouseEnter={() => setOpenDropdown('resources')}
+                  onMouseEnter={() => {
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                    setOpenDropdown('resources');
+                  }}
                   onFocus={() => setOpenDropdown('resources')}
                   onClick={() => setOpenDropdown(openDropdown === 'resources' ? null : 'resources')}
                 >
@@ -100,6 +124,7 @@ const Header = () => {
                 {openDropdown === 'resources' && (
                   <div
                     className="absolute left-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
+                    onMouseEnter={handleDropdownEnter}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
                     {resourcesDropdownItems.map((item) => (
@@ -116,11 +141,18 @@ const Header = () => {
                 )}
               </div>
 
-              {/* Company Dropdown (Non-clickable label) */}
-              <div className="relative" ref={companyDropdownRef}>
+              {/* Company Dropdown */}
+              <div
+                className="relative"
+                ref={companyDropdownRef}
+                onMouseEnter={handleDropdownEnter}
+              >
                 <span
                   className="text-base font-medium text-gray-700 cursor-default"
-                  onMouseEnter={() => setOpenDropdown('company')}
+                  onMouseEnter={() => {
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                    setOpenDropdown('company');
+                  }}
                   onFocus={() => setOpenDropdown('company')}
                 >
                   Company
@@ -128,6 +160,7 @@ const Header = () => {
                 {openDropdown === 'company' && (
                   <div
                     className="absolute left-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
+                    onMouseEnter={handleDropdownEnter}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
                     {companyDropdownItems.map((item) => (
@@ -146,11 +179,19 @@ const Header = () => {
             </div>
 
             {/* User Menu Dropdown */}
-            <div className="relative ml-4" ref={userDropdownRef}>
+            <div
+              className="relative ml-4"
+              ref={userDropdownRef}
+              onMouseEnter={handleDropdownEnter}
+            >
               <button
                 type="button"
                 className="p-2 text-gray-700 hover:text-[#f7931e] transition-colors"
-                onClick={() => setShowUserDropdown((open) => !open)}
+                onClick={() => setShowUserDropdown(!showUserDropdown)}
+                onMouseEnter={() => {
+                  if (hoverTimeout) clearTimeout(hoverTimeout);
+                  setShowUserDropdown(true);
+                }}
                 aria-label="User menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +201,8 @@ const Header = () => {
               {showUserDropdown && (
                 <div
                   className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
-                  onClick={(e) => e.stopPropagation()}
+                  onMouseEnter={handleDropdownEnter}
+                  onMouseLeave={() => setShowUserDropdown(false)}
                 >
                   <button
                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#f7931e] transition-colors"
@@ -192,7 +234,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="lg:hidden p-2 text-gray-700 hover:text-[#f7931e] transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
@@ -212,8 +254,8 @@ const Header = () => {
                   key={item.name}
                   to={item.href}
                   className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
-                    location.pathname === item.href 
-                      ? 'text-[#f7931e] bg-gray-50' 
+                    location.pathname === item.href
+                      ? 'text-[#f7931e] bg-gray-50'
                       : 'text-gray-700 hover:text-[#f7931e] hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -221,7 +263,7 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              
+
               {/* Mobile Resources Dropdown */}
               <div className="px-3 py-2">
                 <span className="text-base font-medium text-gray-700">Resources</span>
@@ -258,7 +300,13 @@ const Header = () => {
 
               {/* Mobile User Options */}
               <div className="border-t border-gray-200 pt-4 mt-4">
-                <button className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-[#f7931e] transition-colors">
+                <button
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-[#f7931e] transition-colors"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate('/resources/language');
+                  }}
+                >
                   Change Language
                 </button>
                 <Link
@@ -266,7 +314,14 @@ const Header = () => {
                   className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#f7931e] transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Log In / Sign Up
+                  Log In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#f7931e] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sign Up
                 </Link>
               </div>
             </div>
