@@ -6,7 +6,7 @@ import tagger from "@dhiwise/component-tagger";
 export default defineConfig({
   plugins: [react(), tagger()],
   build: {
-    outDir: "build",
+    outDir: "dist",
     rollupOptions: {
       // Explicitly ignore all unresolved imports
       onwarn(warning, defaultHandler) {
