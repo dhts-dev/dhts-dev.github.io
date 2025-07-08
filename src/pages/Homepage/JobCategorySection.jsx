@@ -3,9 +3,9 @@ import React from 'react';
 const jobCategories = [
   {
     id: 1,
-    image: "/images/house keeping.png", // House Keeper
+    image: "/images/housekeeper2.jpg", // House Keeper
     title: "House Keeper",
-    backgroundIcon: "/images/housekeeper2.svg"
+    backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 2,
