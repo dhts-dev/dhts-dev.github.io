@@ -37,7 +37,7 @@ const FooterSection = () => {
       <button
         className="absolute top-6 right-10 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3 border border-gray-300 hover:shadow-xl transition-all z-50 text-lg"
       >
-        <img src="/images/qr.svg" alt="QR Code" className="w-16 h-16 object-contain" />
+        <img src="/images/qr.svg" alt="QR Code" className="w-20 h-20 object-contain" />
         <span className="text-base font-medium text-gray-700 hidden sm:inline">Scan QR</span>
       </button>
       <div className="max-w-7xl mx-auto">
