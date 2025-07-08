@@ -5,7 +5,7 @@ const jobCategories = [
     id: 1,
     image: "/images/house keeping.png", // House Keeper
     title: "House Keeper",
-    backgroundIcon: "/images/img_union.svg"
+    backgroundIcon: "/images/housekeeper2.svg"
   },
   {
     id: 2,
