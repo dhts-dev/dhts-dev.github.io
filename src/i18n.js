@@ -1,5 +1,5 @@
-import i18n from 'https://unpkg.com/i18next/dist/es/i18next.js';
-import { initReactI18next } from 'https://unpkg.com/react-i18next/dist/es/initReactI18next.js';
+import i18n from 'i18next';
+// import { initReactI18next } from 'react-i18next';
 
 const resources = {
   en: {
