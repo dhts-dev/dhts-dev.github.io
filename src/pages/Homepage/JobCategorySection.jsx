@@ -3,50 +3,50 @@ import React from 'react';
 const jobCategories = [
   {
     id: 1,
-    image: "/images/housekeeper2.jpg", // House Keeper
-    title: "House Keeper",
+    image: "/images/carp1.png", // House Keeper
+    title: "Carpenter",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 2,
-    image: "/images/img_image_12.png", // Construction Worker
-    title: "Construction Worker",
+    image: "/images/ac mec1.png", // Construction Worker
+    title: "AC Mechanic",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 3,
-    image: "/images/packers movers.jpeg", // Packers and Movers
-    title: "Packers and Movers",
+    image: "/images/con_super1.png", // Packers and Movers
+    title: "Construction Supervisor",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 4,
-    image: "/images/handyman servies.jpeg", // Handyman
-    title: "Handyman",
+    image: "/images/elec1.png", // Handyman
+    title: "Handyman (Electrician) ",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 5,
-    image: "/images/Ac Mechanic.jpeg", // Ac Mechanic
-    title: "Ac Mechanic",
+    image: "/images/plumber1.png", // Ac Mechanic
+    title: "Handyman(plumbing)",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 6,
-    image: "/images/grooming.jpeg", // Groomer
-    title: "Groomer",
+    image: "/images/housekeeper.png", // Groomer
+    title: "Housekeepers",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 7,
-    image: "/images/nurse.jpeg", // Nurse
-    title: "Nurse",
+    image: "/images/constru1.png", // Nurse
+    title: "Construction Worker",
     backgroundIcon: "/images/img_union.svg"
   },
    {
     id: 8,
-    image: "/images/security.png", // security
-    title: "Security Guard",
+    image: "/images/gardener1.png", // security
+    title: "Gardener",
     backgroundIcon: "/images/img_union.svg"
   }
 ];
