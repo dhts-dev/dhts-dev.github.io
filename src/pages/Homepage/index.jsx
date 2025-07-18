@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../../components/common/Header';
+import Footer from '../../components/common/Footer';
 import HeroSection from './HeroSection';
 import JobCategorySection from './JobCategorySection';
 import FeaturedJobsSection from './FeaturedJobsSection';
 import WhyChooseUsSection from './WhyChooseUsSection';
 import TestimonialsSection from './TestimonialsSection';
-import FooterSection from './FooterSection';
+
 
 const Homepage = () => {
   return (
@@ -17,7 +18,7 @@ const Homepage = () => {
         <FeaturedJobsSection />
         <WhyChooseUsSection />
         <TestimonialsSection />
-        <FooterSection />
+         <Footer />
       </main>
     </div>
   );

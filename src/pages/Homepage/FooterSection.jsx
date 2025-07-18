@@ -1,123 +1,68 @@
 import React from 'react';
-import { Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
+import Button from '../ui/Button';
 
-const FooterSection = () => {
-  const mainNavigation = ['Home', 'Industries', 'Resources', 'About Us', 'Contact Us'];
-  const jobsByLocation = ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Al Ain', 'Fujairah'];
-  const jobsByIndustry = [
-    'Construction & Real Estate',
-    'Oil & Gas',
-    'Tourism & Hospitality',
-    'Aviation & Aerospace',
-    'Renewable Energy',
-    'Health Care',
-  ];
-  const forJobSeekers = ['Create Account', 'Login', 'Track Application'];
-  const forEmployers = ['Employer Login', 'Submit Requirement'];
-
+const Footer = () => {
   return (
-    <div className="bg-global-2 py-10 px-4 sm:px-6 lg:px-8 text-global-5">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="flex flex-col lg:flex-row justify-between items-start flex-wrap gap-10 mb-12">
-          {/* Company Info */}
-          <div className="flex-1 min-w-[180px] max-w-xs">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-global-5 mb-4">Sunvi Hi-Tech</h3>
-            <p className="text-base text-global-5">Helping workers to find trusted job</p>
-          </div>
-
-          {/* Main Navigation */}
-          <div className="flex flex-col gap-2 min-w-[180px]">
-            <h4 className="text-lg font-semibold text-global-5 mb-2">Main Navigation</h4>
-            {mainNavigation.map((item, index) => (
-              <span
-                key={index}
-                className="text-base text-left text-global-5 hover:text-global-3 cursor-pointer transition-colors"
-              >
-                {item}
-              </span>
-            ))}
-            <span className="text-base text-global-5 hover:text-global-3 cursor-pointer transition-colors">
-              Privacy Policy
-            </span>
-            <span className="text-base text-global-5 hover:text-global-3 cursor-pointer transition-colors">
-              Terms & Conditions
-            </span>
-          </div>
-
-          {/* Jobs by Location */}
-          <div className="flex flex-col gap-2 min-w-[180px]">
-            <h4 className="text-lg font-semibold text-global-5 mb-2">Jobs by Location</h4>
-            {jobsByLocation.map((location, index) => (
-              <span
-                key={index}
-                className="text-base text-left text-global-5 hover:text-global-3 cursor-pointer transition-colors"
-              >
-                {location}
-              </span>
-            ))}
-          </div>
-
-          {/* Jobs by Industry */}
-          <div className="flex flex-col gap-2 min-w-[180px]">
-            <h4 className="text-lg font-semibold text-global-5 mb-2">Jobs by Industry</h4>
-            {jobsByIndustry.map((industry, index) => (
-              <span
-                key={index}
-                className="text-base text-left text-global-5 hover:text-global-3 cursor-pointer transition-colors"
-              >
-                {industry}
-              </span>
-            ))}
-          </div>
-
-          {/* Job Seekers + Employers Combined Column */}
-          <div className="flex flex-col gap-6 min-w-[180px]">
-            {/* For Job Seekers */}
-            <div className="flex flex-col gap-2">
-              <h4 className="text-lg font-semibold text-global-5 mb-2">For Job Seekers</h4>
-              {forJobSeekers.map((item, index) => (
-                <span
-                  key={index}
-                  className="text-base text-left text-global-5 hover:text-global-3 cursor-pointer transition-colors"
-                >
-                  {item}
-                </span>
-              ))}
+    <footer className="w-full bg-[linear-gradient(192deg,#ffd700_0%,_#ed8733_100%)] py-12 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Company Info */}
+        <div className="flex flex-col gap-2">
+          <span className="text-2xl font-bold text-white">Sunvi Hi-Tech</span>
+          <span className="text-xl text-white">Helping workers to find trusted job</span>
+        </div>
+        {/* Main Navigation */}
+        <div className="flex flex-col gap-2">
+          <span className="text-2xl text-white font-semibold mb-2">Home</span>
+          <span className="text-2xl text-white font-semibold mb-2">Current Jobs</span>
+          <span className="text-2xl text-white font-semibold mb-2">Services</span>
+          <span className="text-2xl text-white font-semibold mb-2">Resources</span>
+          <span className="text-2xl text-white font-semibold mb-2">Industry</span>
+        </div>
+        {/* Search and Location/Industry */}
+        <div className="flex flex-col gap-4">
+          <Button variant="search" size="large" className="w-full mb-2 text-xl">search jobs</Button>
+          <div>
+            <span className="text-2xl text-white font-semibold">Jobs By Location</span>
+            <div className="flex flex-col gap-1 ml-2">
+              <span className="text-xl text-white">India</span>
+              <span className="text-xl text-white">Overseas</span>
             </div>
-
-            {/* For Employers */}
-            <div className="flex flex-col gap-2">
-              <h4 className="text-lg font-semibold text-global-5 mb-2">For Employers</h4>
-              {forEmployers.map((item, index) => (
-                <span
-                  key={index}
-                  className="text-base text-left text-global-5 hover:text-global-3 cursor-pointer transition-colors"
-                >
-                  {item}
-                </span>
-              ))}
+          </div>
+          <div>
+            <span className="text-2xl text-white font-semibold">Jobs By Industry</span>
+            <div className="flex flex-col gap-1 ml-2">
+              <span className="text-xl text-white">Constructor worker</span>
+              <span className="text-xl text-white">Driver</span>
+              <span className="text-xl text-white">Hotel Staff</span>
+              <span className="text-xl text-white">Security</span>
+              <span className="text-xl text-white">House Helping</span>
+              <span className="text-xl text-white">Cook</span>
+              <span className="text-xl text-white">Maintenance</span>
             </div>
           </div>
         </div>
-
-        {/* Social Media & QR Section */}
-        <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-300">
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-global-3 transition-colors"><Facebook size={20} /></a>
-            <a href="#" className="hover:text-global-3 transition-colors"><Linkedin size={20} /></a>
-            <a href="#" className="hover:text-global-3 transition-colors"><Instagram size={20} /></a>
-            <a href="#" className="hover:text-global-3 transition-colors"><Twitter size={20} /></a>
+        {/* For Job Seekers & Employers */}
+        <div className="flex flex-col gap-4">
+          <div>
+            <span className="text-2xl text-white font-semibold">For Job Seekers</span>
+            <div className="flex flex-col gap-1 ml-2">
+              <span className="text-xl text-white">Job Seekers Login</span>
+              <span className="text-xl text-white">Search Jobs</span>
+              <span className="text-xl text-white">How to find Job</span>
+            </div>
           </div>
-
-          {/* QR Code Placeholder */}
-          <div className="w-20 h-20 bg-gray-200 flex items-center justify-center text-sm text-gray-500 rounded">
-            QR
+          <div>
+            <span className="text-2xl text-white font-semibold">For Employers</span>
+            <div className="flex flex-col gap-1 ml-2">
+              <span className="text-xl text-white">EmployersLogin</span>
+              <span className="text-xl text-white">Post Job</span>
+              <span className="text-xl text-white">Hiring Guide</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
-export default FooterSection;
+export default Footer;
