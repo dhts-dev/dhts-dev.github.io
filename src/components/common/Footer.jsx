@@ -20,7 +20,6 @@ const Footer = () => {
         </div>
         {/* Search and Location/Industry */}
         <div className="flex flex-col gap-4">
-          <Button variant="search" size="large" className="w-full mb-2 text-xl">search jobs</Button>
           <div>
             <span className="text-2xl text-white font-semibold">Jobs By Location</span>
             <div className="flex flex-col gap-1 ml-2">
