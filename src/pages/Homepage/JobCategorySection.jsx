@@ -22,18 +22,18 @@ const jobCategories = [
   {
     id: 4,
     image: "/images/elec1.png", // Handyman
-    title: "Handyman (Electrician) ",
+    title: "Electrician",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 5,
     image: "/images/plumber1.png", // Ac Mechanic
-    title: "Handyman(plumbing)",
+    title: "Plumbing",
     backgroundIcon: "/images/img_union.svg"
   },
   {
     id: 6,
-    image: "/images/housekeeper.png", // Groomer
+    image: "/images/housekeeping.png", // Groomer
     title: "Housekeepers",
     backgroundIcon: "/images/img_union.svg"
   },
