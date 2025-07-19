@@ -37,7 +37,7 @@ const WhyChooseUsSection = () => {
 
   return (
     <section className="w-full py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-24 bg-white">
-      <h2 className="text-[#f7931e] text-xl sm:text-2xl md:text-3xl font-semibold mb-8">
+      <h2 className="text-[#642c92] text-xl sm:text-2xl md:text-3xl font-semibold mb-8">
         Why Choose Our Job Platform
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

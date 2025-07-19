@@ -8,7 +8,7 @@ const Signup = () => {
         {/* Left Panel */}
         <div className="md:w-1/2 bg-gradient-to-br from-[#f7931e] to-[#23212b] flex flex-col justify-between p-8 relative">
           <div>
-            <img src="/images/img_header_logo.png" alt="Logo" className="w-20 mb-8" />
+            <img src="/images/Final sanvi logo.png" alt="Logo" className="w-20 mb-8" />
             <div className="h-64 w-full rounded-2xl overflow-hidden mb-8">
               <img
                 src="/images/home.png"

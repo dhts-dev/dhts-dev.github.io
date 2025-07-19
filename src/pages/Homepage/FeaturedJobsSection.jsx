@@ -1,58 +1,11 @@
 import React, { useState } from 'react';
 import Login from '../LoginDialog';
 import Signup from '../SignupDialog';
-
-const jobs = [
-  {
-    id: 1,
-    title: 'AC Mechanic',
-    // position: 10,
-    // pay: '18/hr',
-    location: 'Dubai',
-    type: 'overseas',
-    image: '/images/ac mec2.png',
-  },
-  {
-    id: 2,
-    title: 'Cook',
-    // position: 5,
-    // pay: '25/hr',
-    location: 'Pune',
-    type: 'local',
-    image: '/images/cook1.png',
-  },
-  {
-    id: 3,
-    title: 'Driver',
-    // position: 8,
-    // pay: '15/hr',
-    location: 'Mumbai',
-    type: 'local',
-    image: '/images/driver1.png',
-  },
-  {
-    id: 4,
-    title: 'Civil masons( Floor Installation)',
-    // position: 12,
-    // pay: '12/hr',
-    location: 'Dubai',
-    type: 'overseas',
-    image: '/images/mason-tile installer1.png',
-  },
-  {
-    id: 5,
-    title: 'House Keeper',
-    // position: 7,
-    // pay: '10/hr',
-    location: 'Dubai',
-    type: 'overseas',
-    image: '/images/house keeping.png',
-  },
-];
+import { indianJobs, overseasJobs } from '../../components/common/jobsData';
 
 const filters = [
   { label: 'All', value: 'all' },
-  { label: 'Local', value: 'local' },
+  { label: 'India', value: 'India' },
   { label: 'Overseas', value: 'overseas' },
 ];
 
@@ -61,23 +14,27 @@ const FeaturedJobsSection = () => {
   const [authDialog, setAuthDialog] = useState(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
-  const filteredJobs = activeFilter === 'all' ? jobs : jobs.filter(j => j.type === activeFilter);
+  const allJobs = [...indianJobs, ...overseasJobs];
+  const filteredJobs = activeFilter === 'all'
+    ? allJobs
+    : allJobs.filter((j) => j.type.toLowerCase() === activeFilter.toLowerCase());
+
   const visibleJobs = filteredJobs.slice(0, 4);
 
   return (
     <section className="w-full bg-[#f7f6f2] py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-[#f7931e] mb-8">Featured Jobs</h2>
+        <h2 className="text-4xl font-bold text-[#642c92] mb-8">Featured Jobs</h2>
 
         {/* Filter Buttons */}
         <div className="flex gap-6 mb-8">
-          {filters.map(f => (
+          {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActiveFilter(f.value)}
               className={`px-8 py-2 rounded-full text-lg font-medium transition-all ${
                 activeFilter === f.value
-                  ? 'bg-white text-[#f7931e] border-2 border-[#f7931e]'
+                  ? 'bg-white text-[#642c92] border-2 border-[#642c92]'
                   : 'bg-white text-black'
               }`}
             >
@@ -107,7 +64,7 @@ const FeaturedJobsSection = () => {
                     <div className="text-sm font-medium drop-shadow">{job.location}</div>
                   </div>
                   {job.type === 'overseas' && (
-                    <span className="absolute top-2 right-2 bg-[#f7931e] text-white px-3 py-1 rounded-full text-xs font-medium">
+                    <span className="absolute top-2 right-2 bg-[#642c92] text-white px-3 py-1 rounded-full text-xs font-medium">
                       overseas
                     </span>
                   )}
@@ -115,12 +72,8 @@ const FeaturedJobsSection = () => {
 
                 {/* Details */}
                 <div className="flex-1 flex flex-col justify-between p-4">
-                  {/* <div>
-                    <div className="text-base font-medium mb-1">Position: {job.position}</div>
-                    <div className="text-base font-medium mb-1">Pay: {job.pay}</div>
-                  </div> */}
                   <button
-                    className="mt-auto w-full bg-[#f7931e] hover:bg-[#d97a13] text-white rounded-b-xl py-3 text-lg font-semibold transition-colors duration-200"
+                    className="mt-auto w-full bg-[#642c92] hover:bg-[#4b216e] text-white rounded-b-xl py-3 text-lg font-semibold transition-colors duration-200"
                     onClick={() => setShowLoginPrompt(true)}
                   >
                     Know More
@@ -134,7 +87,7 @@ const FeaturedJobsSection = () => {
           <div className="absolute right-0 top-0 h-full flex items-center pr-2 z-20">
             <div className="w-16 h-48 bg-gradient-to-l from-[#f7f6f2] to-transparent pointer-events-none" />
             <button
-              className="ml-[-2.5rem] bg-[#f7931e] hover:bg-[#d97a13] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-colors duration-200 z-30 border-2 border-white"
+              className="ml-[-2.5rem] bg-[#642c92] hover:bg-[#4b216e] text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-colors duration-200 z-30 border-2 border-white"
               onClick={() => setShowLoginPrompt(true)}
               aria-label="See more jobs"
             >
@@ -147,12 +100,25 @@ const FeaturedJobsSection = () => {
 
         {/* Login Prompt */}
         {showLoginPrompt && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40" onClick={() => setShowLoginPrompt(false)}>
-            <div className="bg-white rounded-2xl p-8 min-w-[320px] relative" onClick={e => e.stopPropagation()}>
-              <button className="absolute top-2 right-2 text-2xl" onClick={() => setShowLoginPrompt(false)}>&times;</button>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
+            onClick={() => setShowLoginPrompt(false)}
+          >
+            <div
+              className="bg-white rounded-2xl p-8 min-w-[320px] relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="absolute top-2 right-2 text-2xl" onClick={() => setShowLoginPrompt(false)}>
+                &times;
+              </button>
               <div className="text-xl font-semibold mb-6">To know more, register here:</div>
               <div className="flex gap-4">
-                <a href="/signup" className="bg-[#f7931e] text-white px-6 py-2 rounded-lg font-medium text-lg hover:bg-[#d87c0e] transition">Sign Up</a>
+                <a
+                  href="/signup"
+                  className="bg-[#642c92] text-white px-6 py-2 rounded-lg font-medium text-lg hover:bg-[#4b216e] transition"
+                >
+                  Sign Up
+                </a>
               </div>
             </div>
           </div>
@@ -160,15 +126,27 @@ const FeaturedJobsSection = () => {
 
         {/* Auth Dialogs */}
         {authDialog === 'login' && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40" onClick={() => setAuthDialog(null)}>
-            <div className="bg-white rounded-2xl p-6 min-w-[350px] max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
+            onClick={() => setAuthDialog(null)}
+          >
+            <div
+              className="bg-white rounded-2xl p-6 min-w-[350px] max-h-[90vh] overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Login />
             </div>
           </div>
         )}
         {authDialog === 'signup' && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40" onClick={() => setAuthDialog(null)}>
-            <div className="bg-white rounded-2xl p-6 min-w-[350px] max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
+            onClick={() => setAuthDialog(null)}
+          >
+            <div
+              className="bg-white rounded-2xl p-6 min-w-[350px] max-h-[90vh] overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Signup />
             </div>
           </div>

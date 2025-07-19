@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className="text-gray-700 text-base md:text-lg mb-4">{t.text}</div>
               <div className="mt-2">
-                <span className="text-[#f7931e] font-bold uppercase tracking-wide text-sm">{t.name}</span>
+                <span className="text-[#642c92] font-bold uppercase tracking-wide text-sm">{t.name}</span>
                 <div className="text-xs text-gray-400 tracking-widest mt-1">{t.job}</div>
               </div>
             </div>
