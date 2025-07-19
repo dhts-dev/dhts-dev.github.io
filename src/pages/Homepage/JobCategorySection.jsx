@@ -15,7 +15,7 @@ const jobCategories = [
   },
   {
     id: 3,
-    image: '/images/con. super1.png',
+    image: '/images/con_super1.png',
     title: 'Construction Supervisor',
     backgroundIcon: '/images/img_union.svg',
   },

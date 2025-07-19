@@ -63,7 +63,7 @@ const CategorySection = () => {
 
   return (
     <section className="w-full py-8 sm:py-12 lg:py-16">
-      <div className="flex flex-col gap-8 sm:gap-12 lg:gap-16 justify-start items-center w-full px-4 sm:px-8 lg:px-16">
+      <div className="flex flex-col gap-4 sm:gap-8 lg:gap-8 justify-start items-center w-full px-4 sm:px-8 lg:px-16">
         {/* Section Title */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-inter font-semibold leading-10 lg:leading-[49px] text-left text-global-3">
           Category
@@ -71,7 +71,7 @@ const CategorySection = () => {
 
         {/* Categories Grid */}
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-4 mb-4 sm:mb-8 lg:mb-8">
             {categories.slice(0, 4).map((category) => (
               <div key={category.id} className="flex flex-col justify-start items-center w-full">
                 <div
@@ -99,7 +99,7 @@ const CategorySection = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-4">
             {categories.slice(4, 8).map((category) => (
               <div key={category.id} className="flex flex-col justify-start items-center w-full">
                 <div
