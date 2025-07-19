@@ -4,31 +4,38 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#23212b] px-2 py-8">
-      <div className="w-full max-w-4xl bg-[#2d2b38] rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden">
+      <div className="w-full max-w-4xl bg-[#2d2b38] rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden animate-fadeIn">
         {/* Left Panel */}
-        <div className="md:w-1/2 bg-gradient-to-br from-[#f7931e] to-[#23212b] flex flex-col justify-between p-8 relative">
+        <div className="md:w-1/2 bg-gradient-to-br from-[#f5ec4e] to-[#f7931e] flex flex-col p-8 gap-6">
+          {/* Logo */}
+          <div className="flex">
+            <img src="/images/Final sanvi logo.png" alt="Logo" className="w-40 md:w-44 lg:w-52" />
+          </div>
+
+          {/* Image */}
+          <div className="h-64 w-full rounded-2xl overflow-hidden">
+            <img
+              src="/images/home.png"
+              alt="Signup Visual"
+              className="object-cover w-full h-full"
+            />
+          </div>
+
+          {/* Text */}
           <div>
-            <img src="/images/Final sanvi logo.png" alt="Logo" className="w-20 mb-8" />
-            <div className="h-64 w-full rounded-2xl overflow-hidden mb-8">
-              <img
-                src="/images/home.png"
-                alt="Signup Visual"
-                className="object-cover w-full h-full"
-              />
-            </div>
             <h2 className="text-white text-2xl font-bold mb-2">
               Capturing Moments, Creating Memories
             </h2>
-            <p className="text-white text-opacity-80">
+            <p className="text-white text-opacity-80 leading-relaxed">
               Join Sunvi Hi-Tech and start your journey today.
             </p>
           </div>
         </div>
 
         {/* Right Panel (Form) */}
-        <div className="md:w-1/2 bg-[#2d2b38] flex flex-col justify-center p-8">
+        <div className="md:w-1/2 bg-[#4a4950] flex flex-col justify-center p-8">
           <h1 className="text-3xl font-extrabold text-white mb-2">Create an account</h1>
-          <p className="text-gray-400 mb-6">
+          <p className="text-white mb-6">
             Already have an account?{' '}
             <Link to="/login" className="text-[#f7931e] font-semibold hover:underline">
               Log in
