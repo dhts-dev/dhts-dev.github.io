@@ -17,7 +17,7 @@ import FeaturedJobsSection from './pages/Homepage/FeaturedJobsSection';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Gallery from './pages/Resources/Gallery';
 import Blogs from './pages/Resources/Blogs';
-import AboutUs from './pages/Resources/AboutUs';
+import AboutUs from './pages/AboutUs';
 import LanguageSelector from './pages/Resources/LanguageSelector';
 
 const AppRoutes = () => {
@@ -32,7 +32,7 @@ const AppRoutes = () => {
         <Route path="/resources" element={<ResourcesSection />} />
         <Route path="/resources/gallery" element={<Gallery />} />
         <Route path="/resources/blogs" element={<Blogs />} />
-        <Route path="/resources/about-us" element={<AboutUs />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/resources/language" element={<LanguageSelector />} />
         <Route path="/post-job" element={<PostJobForm />} />
         <Route path="/candidate-application" element={<CandidateApplicationForm />} />
@@ -40,7 +40,7 @@ const AppRoutes = () => {
         <Route path="/overseas-jobs" element={<OverseasJobs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/FeaturedjobsSection" element={<FeaturedJobsSection/>}/>
+        <Route path="/FeaturedjobsSection" element={<FeaturedJobsSection />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
     </Router>
