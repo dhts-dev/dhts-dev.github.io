@@ -14,7 +14,7 @@ export const indianJobs = [
     position: '10',
     pay: 'Rs30,000',
     location: 'Bangalore',
-    image: '/images/con.sup3.png',
+    image: '/images/con_sup3.png',
     type: 'India',
   },
   {
