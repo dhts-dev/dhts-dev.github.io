@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useTranslation } from 'react-i18next';
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
+import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
 
 const team = [
   { name: 'Priya Sharma', role: 'Founder & CEO', avatar: 'https://i.pravatar.cc/100?img=47' },
