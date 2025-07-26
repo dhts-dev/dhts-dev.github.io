@@ -4,7 +4,7 @@ import Footer from '../../components/common/Footer';
 import HeroSection from './HeroSection';
 import SearchSection from './SearchSection';
 import JobRecommendationsSection from './JobRecommendationsSection';
-// import CategorySection from './CategorySection';
+import SubmissionSuccess from '@/components/common/SubmissionSuccess';
 
 const JobSearchPage = () => {
   return (
@@ -15,6 +15,7 @@ const JobSearchPage = () => {
         <SearchSection /> */}
         {/* <CategorySection /> */}
         <JobRecommendationsSection />
+        <SubmissionSuccess />
       </main>
       <Footer />
     </div>
