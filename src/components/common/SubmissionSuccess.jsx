@@ -34,19 +34,13 @@ const SubmissionSuccess = () => {
             <p className="text-gray-600 mb-8 text-sm md:text-base">
               Our team will contact you if your profile matches our requirements. You can expect to hear from us within 5-7 working days.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-center">
               <Link
                 to="/"
                 className="px-6 py-3 bg-[#642c92] text-white rounded-md font-medium hover:bg-[#4f2275] transition-colors duration-200"
               >
                 Return to Home
               </Link>
-              <button
-                onClick={() => window.print()}
-                className="px-6 py-3 border border-[#642c92] text-[#642c92] rounded-md font-medium hover:bg-[#f3f5ed] transition-colors duration-200"
-              >
-                Print Confirmation
-              </button>
             </div>
           </div>
         </div>
@@ -56,4 +50,4 @@ const SubmissionSuccess = () => {
   );
 };
 
-export default SubmissionSuccess; 
+export default SubmissionSuccess;
