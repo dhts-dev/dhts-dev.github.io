@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Import page components
 import Homepage from './pages/Homepage';
 import JobSearch from './pages/JobSearch';
+import AboutUs from './pages/AboutUs';
 import Services from './pages/Services';
 import ResourcesSection from './pages/ResourcesSection';
 import EmployersServices from './pages/EmployersServices';
@@ -17,7 +18,6 @@ import FeaturedJobsSection from './pages/Homepage/FeaturedJobsSection';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Gallery from './pages/Resources/Gallery';
 import Blogs from './pages/Resources/Blogs';
-import AboutUs from './pages/AboutUs';
 import LanguageSelector from './pages/Resources/LanguageSelector';
 
 const AppRoutes = () => {
@@ -26,13 +26,13 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/current-jobs" element={<JobSearch />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/job-seekers" element={<Services />} />
         <Route path="/services/employers" element={<EmployersServices />} />
         <Route path="/resources" element={<ResourcesSection />} />
         <Route path="/resources/gallery" element={<Gallery />} />
         <Route path="/resources/blogs" element={<Blogs />} />
-        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/resources/language" element={<LanguageSelector />} />
         <Route path="/post-job" element={<PostJobForm />} />
         <Route path="/candidate-application" element={<CandidateApplicationForm />} />

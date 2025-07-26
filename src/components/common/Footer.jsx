@@ -4,7 +4,6 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/f
 const Footer = () => {
   return (
    <footer className="w-full bg-gradient-to-b from-[#642c92] to-pink-500 py-12 px-6">
-
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
         {/* 1. Company Info + Social + QR */}
         <div className="flex flex-col space-y-6">
