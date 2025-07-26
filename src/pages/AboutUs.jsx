@@ -1,22 +1,17 @@
-import React, { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 
 const AboutUs = () => {
   const navigate = useNavigate();
-  const whoWeAreRef = useRef(null);
-
-  const scrollToWhoWeAre = () => {
-    whoWeAreRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <div className="bg-[#f7f6f2] text-[#333] min-h-screen">
       <Header />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-[#642c92] to-[#bf42bb] py-20 px-4 sm:px-6 lg:px-8 text-white">
+      <section className="relative bg-gradient-to-r from-[#642c92] to-[#8a4bbe] py-20 px-4 sm:px-6 lg:px-8 text-white">
         <div className="relative bg-[#f7f6f2] py-12 md:py-16 px-4 sm:px-6 lg:px-8 border-b-2 border-[#642c92]/20">
           {/* Geometric pattern */}
           <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -33,31 +28,12 @@ const AboutUs = () => {
                 We create meaningful connections between skilled Indian workers and employers across
                 India and the Gulf region.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => navigate('/current-jobs')}
-                  className="bg-[#642c92] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#4b216e] transition shadow-md"
-                >
-                  Explore Jobs
-                </button>
-                <button
-                  onClick={scrollToWhoWeAre}
-                  className="flex items-center text-[#642c92] font-medium group"
-                >
-                  Watch Our Story
-                  <svg
-                    className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <button
+                onClick={() => navigate('/available-jobs')}
+                className="bg-[#642c92] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#4b216e] transition shadow-md"
+              >
+                Explore Jobs
+              </button>
             </motion.div>
 
             <motion.div
@@ -258,7 +234,6 @@ const AboutUs = () => {
         </section>
 
         {/* Our Process */}
-        {/* 
         <section className="mb-16">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
@@ -297,8 +272,6 @@ const AboutUs = () => {
           </div>
         </section>
 
-        */}
-        
         {/* Vision & Mission */}
         <section className="grid md:grid-cols-2 gap-8 mb-16">
           <motion.div
