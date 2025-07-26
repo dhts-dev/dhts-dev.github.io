@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 
 const testimonials = [
   {
-    text: '"Sunvi Hi-Tech helped me find my dream job overseas quickly and easily. The process was smooth, and the support team guided me at every step!"',
+    text: 'Sunvi Hi-Tech helped me find my dream job overseas quickly and easily. The process was smooth, and the support team guided me at every step!',
     name: 'PRIYA SINGH',
     job: 'CANDIDATE (NURSE, UAE)',
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+    avatar: '/images/Indian Nurse.png',
   },
   {
-    text: '"We hired skilled workers for our company through Sunvi Hi-Tech. The platform is reliable, and the candidates are well-screened. Highly recommended for employers!"',
+    text: 'We hired skilled workers for our company through Sunvi Hi-Tech. The platform is reliable, and the candidates are well-screened. Highly recommended for employers!',
     name: 'RAHUL MEHTA',
-    job: 'HR MANAGER, TECH SOLUTIONS',
-    avatar: 'https://randomuser.me/api/portraits/men/36.jpg',
+    job: 'Supervisor',
+    avatar: '/images/Construction Supervisor.png',
   },
   {
-    text: '"The job alerts and recommendations matched my skills perfectly. I got placed in a reputed company within weeks. Thank you, Sunvi Hi-Tech!"',
-    name: 'ANITA DESAI',
-    job: 'CANDIDATE (ACCOUNTANT, INDIA)',
-    avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    text: 'The job alerts and recommendations matched my skills perfectly. I got placed in a reputed company within weeks. Thank you, Sunvi Hi-Tech!',
+    name: 'Daksh Joshi',
+    job: 'Security Head (INDIA)',
+    avatar: '/images/Security_Head.png',
   },
 ];
 
