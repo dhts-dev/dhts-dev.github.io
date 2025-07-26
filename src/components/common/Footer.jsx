@@ -35,7 +35,7 @@ const Footer = () => {
               <FaLinkedinIn />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/sunvihitech?igsh=MTVvcGl1ajloMzRzbQ=="
               target="_blank"
               rel="Sunvi Hi-Tech"
               className="text-white text-2xl hover:text-[#642c92] transition duration-300"
