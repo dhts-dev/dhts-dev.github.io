@@ -28,11 +28,11 @@ export const indianJobs = [
   },
   {
     id: 4,
-    title: 'Fitter',
-    position: '10',
+    title: 'Carpenter',
+    position: '50',
     // pay: 'Rs30,000',
-    location: 'Hyderabad',
-    image: '/images/mason-tile installer1.png',
+    location: 'Pune',
+    image: '/images/carp1.png',
     type: 'India',
   },
   {
@@ -128,8 +128,19 @@ export const overseasJobs = [
     image: '/images/elec1.png',
     type: 'overseas',
   },
-  {
+
+    {
     id: 15,
+    title: 'Carpenter',
+    position: '50',
+    // pay: 'AED 1500',
+    location: 'Dubai',
+    image: '/images/carpenter.jpeg',
+    type: 'overseas',
+  },
+
+  {
+    id: 16,
     title: 'Logistics & Warehouse Helper',
     position: '20',
     // pay: 'AED 1800',
@@ -138,7 +149,7 @@ export const overseasJobs = [
     type: 'overseas',
   },
   {
-    id: 16,
+    id: 17,
     title: 'Plumbers',
     position: '10',
     // pay: 'AED 1800',
@@ -147,7 +158,7 @@ export const overseasJobs = [
     type: 'overseas',
   },
   {
-    id: 17,
+    id: 18,
     title: 'Gardeners',
     position: '10',
     // pay: 'AED 1900',
