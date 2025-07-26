@@ -29,7 +29,7 @@ const AboutUs = () => {
                 India and the Gulf region.
               </p>
               <button
-                onClick={() => navigate('/available-jobs')}
+                onClick={() => navigate('/current-jobs')}
                 className="bg-[#642c92] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#4b216e] transition shadow-md"
               >
                 Explore Jobs
