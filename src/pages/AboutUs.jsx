@@ -234,6 +234,7 @@ const AboutUs = () => {
         </section>
 
         {/* Our Process */}
+        {/*
         <section className="mb-16">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
@@ -271,6 +272,8 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
+
+        */}
 
         {/* Vision & Mission */}
         <section className="grid md:grid-cols-2 gap-8 mb-16">
