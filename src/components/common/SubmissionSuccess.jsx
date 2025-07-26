@@ -29,10 +29,12 @@ const SubmissionSuccess = () => {
               Application Submitted Successfully!
             </h2>
             <p className="text-gray-600 mb-6 text-base md:text-lg">
-              Thank you for submitting your application. We have received your details and will review them shortly.
+              Thank you for submitting your application. We have received your details and will
+              review them shortly.
             </p>
             <p className="text-gray-600 mb-8 text-sm md:text-base">
-              Our team will contact you if your profile matches our requirements. You can expect to hear from us within 5-7 working days.
+              Our team will contact you if your profile matches our requirements. You can expect to
+              hear from us within 5-7 working days.
             </p>
             <div className="flex justify-center">
               <Link

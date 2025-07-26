@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import SubmissionSuccess from '../../components/common/SubmissionSuccess';
 
 const CandidateApplicationForm = () => {
-  const navigate = useNavigate();
   const [presentAddress, setPresentAddress] = useState('');
   const [permanentAddress, setPermanentAddress] = useState('');
   const [sameAsPresent, setSameAsPresent] = useState(false);
   const [formData, setFormData] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // Dynamic Sections
   const [experiences, setExperiences] = useState([
@@ -25,6 +23,100 @@ const CandidateApplicationForm = () => {
   ]);
 
   const inputClass = 'border px-4 py-3 rounded';
+
+  // Required fields configuration
+  const requiredFields = {
+    firstName: 'First Name is required',
+    lastName: 'Last Name is required',
+    guardianName: "Father's/Spouse Name is required",
+    dob: 'Date of Birth is required',
+    gender: 'Gender is required',
+    contact: 'Contact Number is required',
+    email: 'Email ID is required',
+    presentAddress: 'Present Address is required',
+    jobApplied: 'Job Applied For is required',
+    nationality: 'Nationality is required',
+    maritalStatus: 'Marital Status is required'
+  };
+
+  // Validate form function
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    // Check required fields
+    Object.keys(requiredFields).forEach(field => {
+      if (!formData[field] || formData[field].toString().trim() === '') {
+        newErrors[field] = requiredFields[field];
+        isValid = false;
+      }
+    });
+
+    // Special check for presentAddress (since it's managed separately)
+    if (!presentAddress || presentAddress.trim() === '') {
+      newErrors.presentAddress = requiredFields.presentAddress;
+      isValid = false;
+    }
+
+    // Validate email format
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+      isValid = false;
+    }
+
+    // Validate phone number format (basic validation)
+    if (formData.contact && !/^[0-9+]{10,15}$/.test(formData.contact)) {
+      newErrors.contact = 'Please enter a valid contact number (10-15 digits)';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      // Scroll to the first error
+      const firstErrorField = Object.keys(errors)[0];
+      if (firstErrorField) {
+        document.getElementById(firstErrorField)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+      return;
+    }
+
+    const finalPayload = {
+      ...formData,
+      presentAddress,
+      permanentAddress: sameAsPresent ? presentAddress : permanentAddress,
+      experiences,
+      educations,
+      skills,
+    };
+    console.log('Submitting form:', finalPayload);
+    setIsSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleInputChange =
+    (field, type, maxLength = 100) =>
+    (e) => {
+      const sanitizedValue = sanitizeInput(e.target.value, type).slice(0, maxLength);
+      setFormData((prev) => ({ ...prev, [field]: sanitizedValue }));
+      
+      // Clear error when user starts typing
+      if (errors[field]) {
+        setErrors(prev => {
+          const newErrors = {...prev};
+          delete newErrors[field];
+          return newErrors;
+        });
+      }
+    };
 
   // Prevent invalid characters from being entered
   const handleKeyPress = (type) => (e) => {
@@ -96,13 +188,6 @@ const CandidateApplicationForm = () => {
     return sanitizers[type] || sanitizers.default;
   };
 
-  const handleInputChange =
-    (field, type, maxLength = 100) =>
-    (e) => {
-      const sanitizedValue = sanitizeInput(e.target.value, type).slice(0, maxLength);
-      setFormData((prev) => ({ ...prev, [field]: sanitizedValue }));
-    };
-
   const handlePresentAddressChange = (e) => {
     const value = sanitizeInput(e.target.value, 'address').slice(0, 200);
     setPresentAddress(value);
@@ -110,6 +195,14 @@ const CandidateApplicationForm = () => {
     if (sameAsPresent) {
       setPermanentAddress(value);
       setFormData((prev) => ({ ...prev, permanentAddress: value }));
+    }
+    
+    if (errors.presentAddress) {
+      setErrors(prev => {
+        const newErrors = {...prev};
+        delete newErrors.presentAddress;
+        return newErrors;
+      });
     }
   };
 
@@ -143,23 +236,23 @@ const CandidateApplicationForm = () => {
 
   const addSkill = () => setSkills([...skills, { skillName: '', institute: '', experience: '' }]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const finalPayload = {
-      ...formData,
-      presentAddress,
-      permanentAddress,
-      experiences,
-      educations,
-      skills,
-    };
-    console.log('Submitting form:', finalPayload);
+  const getInputClass = (fieldName) => {
+    return errors[fieldName] 
+      ? `${inputClass} border-red-500` 
+      : inputClass;
+  };
 
-    // Set isSubmitted to true to show the success message
-    setIsSubmitted(true);
-    
-    // Scroll to top to ensure the success message is visible
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleReturnHome = () => {
+    setIsSubmitted(false);
+    // Reset form if needed
+    setPresentAddress('');
+    setPermanentAddress('');
+    setSameAsPresent(false);
+    setFormData({});
+    setExperiences([{ companyName: '', designation: '', from: '', to: '', salary: '', reason: '' }]);
+    setEducations([{ qualification: '', institute: '', year: '', marks: '', subject: '' }]);
+    setSkills([{ skillName: '', institute: '', experience: '', details: '' }]);
+    setErrors({});
   };
 
   return (
@@ -167,7 +260,7 @@ const CandidateApplicationForm = () => {
       <Header />
       <div className="flex-1 w-full flex flex-col items-center px-4 py-6 overflow-auto pt-16 lg:pt-20">
         {isSubmitted ? (
-          <SubmissionSuccess />
+          <SubmissionSuccess onReturnHome={handleReturnHome} />
         ) : (
           <form onSubmit={handleSubmit} className="w-full max-w-5xl bg-white rounded-lg shadow p-8">
             <h1 className="text-[#642c92] text-3xl font-bold mb-2 text-center">
@@ -176,19 +269,27 @@ const CandidateApplicationForm = () => {
             <p className="text-center text-base mb-6">
               Please fill in the details in capital letter
             </p>
+            <p className="text-red-500 text-sm mb-4">* indicates required fields</p>
 
             {/* Personal Details to Job Applied For */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {/* First Name - Required */}
               <div className="flex flex-col">
-                <label>First Name</label>
+                <label>First Name *</label>
                 <input
-                  className={inputClass}
+                  id="firstName"
+                  className={getInputClass('firstName')}
                   onChange={handleInputChange('firstName', 'name', 50)}
                   onKeyPress={handleKeyPress('name')}
                   onPaste={handlePaste('name')}
                   maxLength={50}
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+                )}
               </div>
+
+              {/* Middle Name - Not required */}
               <div className="flex flex-col">
                 <label>Middle Name</label>
                 <input
@@ -199,59 +300,98 @@ const CandidateApplicationForm = () => {
                   maxLength={50}
                 />
               </div>
+
+              {/* Last Name - Required */}
               <div className="flex flex-col">
-                <label>Last Name</label>
+                <label>Last Name *</label>
                 <input
-                  className={inputClass}
+                  id="lastName"
+                  className={getInputClass('lastName')}
                   onChange={handleInputChange('lastName', 'name', 50)}
                   onKeyPress={handleKeyPress('name')}
                   onPaste={handlePaste('name')}
                   maxLength={50}
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+                )}
               </div>
+
+              {/* Father's/Spouse Name - Required */}
               <div className="flex flex-col">
-                <label>Father's / Spouse Name</label>
+                <label>Father's / Spouse Name *</label>
                 <input
-                  className={inputClass}
+                  id="guardianName"
+                  className={getInputClass('guardianName')}
                   onChange={handleInputChange('guardianName', 'name', 100)}
                   onKeyPress={handleKeyPress('name')}
                   onPaste={handlePaste('name')}
                   maxLength={100}
                 />
+                {errors.guardianName && (
+                  <p className="text-red-500 text-sm mt-1">{errors.guardianName}</p>
+                )}
               </div>
+
+              {/* Date of Birth - Required */}
               <div className="flex flex-col">
-                <label>Date of Birth</label>
+                <label>Date of Birth *</label>
                 <input
+                  id="dob"
                   type="date"
-                  className={inputClass}
+                  className={getInputClass('dob')}
                   placeholder="dd-mm-yyyy"
                   onChange={handleInputChange('dob', 'default')}
                 />
+                {errors.dob && (
+                  <p className="text-red-500 text-sm mt-1">{errors.dob}</p>
+                )}
               </div>
+
+              {/* Gender - Required */}
               <div className="flex flex-col">
-                <label>Gender</label>
-                <select className={inputClass} onChange={handleInputChange('gender', 'default')}>
+                <label>Gender *</label>
+                <select 
+                  id="gender"
+                  className={getInputClass('gender')}
+                  onChange={handleInputChange('gender', 'default')}
+                  value={formData.gender || ''}
+                >
+                  <option value="">Select Gender</option>
                   <option>Male</option>
                   <option>Female</option>
                   <option>Other</option>
                 </select>
+                {errors.gender && (
+                  <p className="text-red-500 text-sm mt-1">{errors.gender}</p>
+                )}
               </div>
+
+              {/* Nationality - Required */}
               <div className="flex flex-col">
-                <label>Nationality</label>
+                <label>Nationality *</label>
                 <input
-                  className={inputClass}
+                  id="nationality"
+                  className={getInputClass('nationality')}
                   placeholder="Nationality"
                   onChange={handleInputChange('nationality', 'name', 50)}
                   onKeyPress={handleKeyPress('name')}
                   onPaste={handlePaste('name')}
                   maxLength={50}
                 />
+                {errors.nationality && (
+                  <p className="text-red-500 text-sm mt-1">{errors.nationality}</p>
+                )}
               </div>
+
+              {/* Marital Status - Required */}
               <div className="flex flex-col">
-                <label>Marital Status</label>
+                <label>Marital Status *</label>
                 <select
-                  className={inputClass}
+                  id="maritalStatus"
+                  className={getInputClass('maritalStatus')}
                   onChange={handleInputChange('maritalStatus', 'default')}
+                  value={formData.maritalStatus || ''}
                 >
                   <option value="">Select Status</option>
                   <option>Single</option>
@@ -259,32 +399,50 @@ const CandidateApplicationForm = () => {
                   <option>Divorced</option>
                   <option>Widowed</option>
                 </select>
+                {errors.maritalStatus && (
+                  <p className="text-red-500 text-sm mt-1">{errors.maritalStatus}</p>
+                )}
               </div>
+
+              {/* Contact Number - Required */}
               <div className="flex flex-col">
-                <label>Contact Number</label>
+                <label>Contact Number *</label>
                 <input
-                  className={inputClass}
+                  id="contact"
+                  className={getInputClass('contact')}
                   placeholder="Contact Number"
                   onChange={handleInputChange('contact', 'phone', 15)}
                   onKeyPress={handleKeyPress('phone')}
                   onPaste={handlePaste('phone')}
                   maxLength={15}
                 />
+                {errors.contact && (
+                  <p className="text-red-500 text-sm mt-1">{errors.contact}</p>
+                )}
               </div>
+
+              {/* Email - Required */}
               <div className="flex flex-col">
-                <label>Email ID</label>
+                <label>Email ID *</label>
                 <input
-                  className={inputClass}
+                  id="email"
+                  className={getInputClass('email')}
                   placeholder="Email ID"
                   onChange={handleInputChange('email', 'email', 100)}
                   maxLength={100}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
+
+              {/* Present Address - Required */}
               <div className="flex flex-col md:col-span-2">
-                <label>Present Address</label>
+                <label>Present Address *</label>
                 <textarea
+                  id="presentAddress"
                   rows={2}
-                  className={inputClass}
+                  className={getInputClass('presentAddress')}
                   placeholder="Present Address"
                   value={presentAddress}
                   onChange={handlePresentAddressChange}
@@ -292,7 +450,11 @@ const CandidateApplicationForm = () => {
                   onPaste={handlePaste('address')}
                   maxLength={200}
                 />
+                {errors.presentAddress && (
+                  <p className="text-red-500 text-sm mt-1">{errors.presentAddress}</p>
+                )}
               </div>
+
               <div className="flex flex-col md:col-span-2">
                 <label className="inline-flex items-center">
                   <input
@@ -304,8 +466,10 @@ const CandidateApplicationForm = () => {
                   Same as Present Address
                 </label>
               </div>
+
+              {/* Permanent Address - Not required unless different */}
               <div className="flex flex-col md:col-span-2">
-                <label>Permanent Address</label>
+                <label>Permanent Address {!sameAsPresent && '*'}</label>
                 <textarea
                   rows={2}
                   className={inputClass}
@@ -319,19 +483,28 @@ const CandidateApplicationForm = () => {
                   onKeyPress={handleKeyPress('address')}
                   onPaste={handlePaste('address')}
                   maxLength={200}
+                  disabled={sameAsPresent}
                 />
               </div>
+
+              {/* Job Applied For - Required */}
               <div className="flex flex-col md:col-span-2">
-                <label>Job Applied For</label>
+                <label>Job Applied For *</label>
                 <input
-                  className={inputClass}
+                  id="jobApplied"
+                  className={getInputClass('jobApplied')}
                   placeholder="Job Applied For"
                   onChange={handleInputChange('jobApplied', 'generalText', 100)}
                   onKeyPress={handleKeyPress('generalText')}
                   onPaste={handlePaste('generalText')}
                   maxLength={100}
                 />
+                {errors.jobApplied && (
+                  <p className="text-red-500 text-sm mt-1">{errors.jobApplied}</p>
+                )}
               </div>
+
+              {/* Agent Name - Not required */}
               <div className="flex flex-col">
                 <label>Agent Name</label>
                 <input
@@ -343,6 +516,8 @@ const CandidateApplicationForm = () => {
                   maxLength={50}
                 />
               </div>
+
+              {/* Agent Code - Not required */}
               <div className="flex flex-col">
                 <label>Agent Code</label>
                 <input
@@ -356,7 +531,7 @@ const CandidateApplicationForm = () => {
               </div>
             </div>
 
-            {/* EXPERIENCE SECTION */}
+            {/* EXPERIENCE SECTION - Not required */}
             <h2 className="text-[#642c92] text-lg font-semibold mt-6 mb-2">EXPERIENCE DETAILS</h2>
             {experiences.map((exp, index) => (
               <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -467,12 +642,12 @@ const CandidateApplicationForm = () => {
                 e.preventDefault();
                 addExperience();
               }}
-              className="bg-[#642c92] text-white px-4 py-2 rounded"
+              className="bg-[#642c92] text-white px-4 py-2 rounded mb-6"
             >
-              Add More
+              Add More Experience
             </button>
 
-            {/* EDUCATION SECTION */}
+            {/* EDUCATION SECTION - Not required */}
             <h2 className="text-[#642c92] text-lg font-semibold mt-6 mb-2">
               EDUCATION QUALIFICATION
             </h2>
@@ -556,12 +731,12 @@ const CandidateApplicationForm = () => {
                 e.preventDefault();
                 addEducation();
               }}
-              className="bg-[#642c92] text-white px-4 py-2 rounded"
+              className="bg-[#642c92] text-white px-4 py-2 rounded mb-6"
             >
-              Add More
+              Add More Education
             </button>
 
-            {/* SKILL SECTION */}
+            {/* SKILL SECTION - Not required */}
             <h2 className="text-[#642c92] text-lg font-semibold mt-6 mb-2">
               SKILL & TRADE DETAILS
             </h2>
@@ -617,12 +792,12 @@ const CandidateApplicationForm = () => {
                 e.preventDefault();
                 addSkill();
               }}
-              className="bg-[#642c92] text-white px-4 py-2 rounded"
+              className="bg-[#642c92] text-white px-4 py-2 rounded mb-6"
             >
-              Add More
+              Add More Skills
             </button>
 
-            {/* Language Section */}
+            {/* Language Section - Not required */}
             <h2 className="text-[#642c92] text-lg font-semibold mt-6 mb-2">LANGUAGES KNOWN</h2>
             {[1, 2, 3].map((i) => (
               <div key={i} className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
@@ -658,12 +833,21 @@ const CandidateApplicationForm = () => {
             {/* Declaration with checkbox */}
             <div className="mt-4 mb-6">
               <label className="inline-flex items-start text-base text-gray-700">
-                <input type="checkbox" className="mr-2 mt-1" required />
+                <input 
+                  type="checkbox" 
+                  className="mr-2 mt-1" 
+                  required 
+                  checked={formData.declaration || false}
+                  onChange={(e) => setFormData(prev => ({...prev, declaration: e.target.checked}))}
+                />
                 <span>
                   I declare that the information given, herein above, is true and correct to the
                   best of my knowledge and belief and nothing material has been concealed.
                 </span>
               </label>
+              {errors.declaration && (
+                <p className="text-red-500 text-sm mt-1">You must accept the declaration</p>
+              )}
             </div>
 
             <div className="flex justify-center gap-6 mt-4">

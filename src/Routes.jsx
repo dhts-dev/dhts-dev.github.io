@@ -19,7 +19,6 @@ import Gallery from './pages/Resources/Gallery';
 import Blogs from './pages/Resources/Blogs';
 import AboutUs from './pages/AboutUs';
 import LanguageSelector from './pages/Resources/LanguageSelector';
-import SubmissionSuccess from './components/common/SubmissionSuccess';
 
 const AppRoutes = () => {
   return (
@@ -33,7 +32,6 @@ const AppRoutes = () => {
         <Route path="/resources" element={<ResourcesSection />} />
         <Route path="/resources/gallery" element={<Gallery />} />
         <Route path="/resources/blogs" element={<Blogs />} />
-        <Route path="/SubmissionSuccess" element={<SubmissionSuccess />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/resources/language" element={<LanguageSelector />} />
         <Route path="/post-job" element={<PostJobForm />} />
