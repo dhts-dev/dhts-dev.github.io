@@ -48,14 +48,14 @@ const Industry = () => {
             Industries We Serve
           </h2>
           <p className="text-center text-gray-700 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl">
-            Explore job opportunities across sectors—locally and overseas in GCC countries.
+            Explore job opportunities across sectors - locally and overseas in GCC countries.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 w-full max-w-6xl">
             {industries.map((ind, idx) => (
               <div
                 key={idx}
-                className="relative flex flex-col justify-end items-center h-48 sm:h-64 lg:h-72 rounded-2xl shadow-xl overflow-hidden group transform transition duration-300 hover:scale-105 touch-manipulation"
+                className="relative flex flex-col justify-end items-center h-64 sm:h-64 lg:h-72 rounded-2xl shadow-xl overflow-hidden group transform transition duration-300 hover:scale-105 touch-manipulation"
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
