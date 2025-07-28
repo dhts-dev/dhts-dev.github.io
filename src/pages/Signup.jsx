@@ -59,7 +59,7 @@ const Signup = () => {
         {/* Left Panel (unchanged) */}
         <div className="md:w-1/2 bg-gradient-to-br from-[#f5ec4e] to-[#f7931e] flex flex-col p-8 gap-6">
           <div className="flex">
-            <img src="/images/Final sanvi logo.png" alt="Logo" className="w-40 md:w-44 lg:w-52" />
+            <img src="/images/Final sanvi logo.png" alt="Logo" className="w-40 md:w-44 lg:w-50" />
           </div>
           <div className="h-64 w-full rounded-2xl overflow-hidden">
             <img src="/images/home.png" alt="Signup Visual" className="object-cover w-full h-full" />
