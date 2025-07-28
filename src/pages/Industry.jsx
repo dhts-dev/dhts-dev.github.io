@@ -3,54 +3,71 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 const industries = [
-  { title: 'Construction and real estate', image: '/images/img_image_12.png' },
-  { title: 'Manufacturing and industrial', image: '/images/img_image_13.png' },
-  { title: 'Hospitality and tourism', image: '/images/img_image_14.png' },
-  { title: 'Healthcare', image: '/images/housekeeper.png' },
-  { title: 'Retail and customer service', image: '/images/img_image_14.png' },
-  { title: 'Logistics and transportation', image: '/images/img_image_13.png' },
-  { title: 'Security services', image: '/images/img_image_12.png' },
-  { title: 'Cleaning and facility management', image: '/images/img_image_12.png' },
+  { title: 'Construction and Real Estate', image: '/images/construction and real estate.png' },
+  { title: 'Manufacturing and Industrial', image: '/images/Manufacutring and industrial 1.webp' },
+  { title: 'Hospitality and Tourism', image: '/images/hospitality and tourism.png' },
+  { title: 'Healthcare', image: '/images/healthcare.png' },
+  { title: 'Retail and Customer Service', image: '/images/retail and customer service.png' },
+  { title: 'Logistics and Transportation', image: '/images/Logistics & Transportation.webp' },
+  { title: 'Security Services', image: '/images/securityservices.png' },
+  { title: 'Cleaning and Facility Management', image: '/images/clean and facility management.png' },
 ];
 
 const Industry = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f3f5ed]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-purple-50 to-pink-50">
       <Header />
+
       <main className="flex-1 w-full flex flex-col items-center pt-16 lg:pt-20">
         {/* Hero Section */}
-        <section className="w-full flex flex-col items-center bg-[#f3f5ed]">
-          <div className="w-full max-w-5xl relative mt-4 mb-8">
+        <section className="w-full flex flex-col items-center">
+          <div className="w-full max-w-5xl relative mt-2 sm:mt-4 mb-10 sm:mb-12">
             <img
               src="/images/request a team.jpeg"
               alt="Team"
-              className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-b-2xl"
+              className="w-full h-52 sm:h-72 md:h-96 object-cover rounded-b-3xl shadow-lg"
             />
-            <div className="absolute left-8 top-1/3 text-white text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black leading-tight drop-shadow-lg max-w-[60%]">
-              Get Teams for HouseKeeping, Security, Labours and more
+
+            {/* Overlay container that centers on mobile, left-aligns on larger screens */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center sm:items-start sm:justify-center px-4 sm:px-10">
+              <h1 className="text-white text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow-2xl text-center sm:text-left max-w-[90%] sm:max-w-[70%]">
+                Get Teams for Housekeeping, Security, Labours & More
+              </h1>
+
+              <button className="mt-4 sm:mt-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-base sm:text-xl font-bold rounded-xl px-6 sm:px-8 py-3 shadow-md hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                Request Team
+              </button>
             </div>
-            <button className="absolute right-8 bottom-8 bg-[#f7931e] text-white text-xl font-bold rounded-xl px-8 py-3">
-              Request Team
-            </button>
           </div>
         </section>
 
         {/* Industries We Serve */}
-        <section className="w-full flex flex-col items-center mb-16">
-          <h2 className="text-[#f7931e] text-xl md:text-2xl font-bold mb-2 text-center">Industries We serve</h2>
-          <p className="text-center text-base mb-8">Explore job opportunities across sectors-locally and overseas in GCC countries</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-5xl">
+        <section className="w-full flex flex-col items-center mb-16 px-4">
+          <h2 className="text-purple-700 text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 text-center">
+            Industries We Serve
+          </h2>
+          <p className="text-center text-gray-700 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl">
+            Explore job opportunities across sectors - locally and overseas in GCC countries.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 w-full max-w-6xl">
+          {/* Increased gap on larger screens, tighter but comfy on mobile */}
             {industries.map((ind, idx) => (
               <div
                 key={idx}
-                className="relative flex flex-col justify-end items-center h-56 sm:h-64 lg:h-72 rounded-2xl shadow-lg overflow-hidden group transform transition-transform duration-300 hover:scale-105 bg-gray-100"
-                style={{ backgroundImage: `url(${ind.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                className="relative flex flex-col justify-end items-center h-48 sm:h-64 lg:h-72 rounded-2xl shadow-xl overflow-hidden group transform transition duration-300 hover:scale-105 touch-manipulation"
               >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${ind.image})` }}
+                ></div>
+
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 group-hover:from-[#f7931e]/80 group-hover:via-[#f7931e]/40 group-hover:to-transparent transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:from-purple-700/70 group-hover:via-pink-500/40 transition-all duration-300"></div>
+
                 {/* Title */}
-                <div className="relative z-10 w-full text-center px-4 pb-6">
-                  <span className="text-white text-lg sm:text-xl lg:text-2xl font-bold drop-shadow-lg">
+                <div className="relative z-10 w-full text-center px-3 sm:px-4 pb-4 sm:pb-6">
+                  <span className="text-white text-base sm:text-xl lg:text-2xl font-bold drop-shadow-lg">
                     {ind.title}
                   </span>
                 </div>
@@ -59,9 +76,10 @@ const Industry = () => {
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
 };
 
-export default Industry; 
+export default Industry;
