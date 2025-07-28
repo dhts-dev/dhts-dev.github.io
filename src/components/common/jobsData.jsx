@@ -114,7 +114,7 @@ export const overseasJobs = [
     id: 13,
     title: 'Civil Helper',
     position: '50',
-    pay: 'AED 1500',
+    // pay: 'AED 1500',
     location: 'Dubai',
     image: '/images/constru2.png',
     type: 'overseas',
