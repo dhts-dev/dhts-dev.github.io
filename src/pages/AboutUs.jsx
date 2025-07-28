@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import ApplyNowButton from '../components/common/ApplyNowButton';
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const AboutUs = () => {
     <div className="bg-[#f7f6f2] text-[#333] min-h-screen">
       <Header />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#642c92] to-[#8a4bbe] py-20 px-4 sm:px-6 lg:px-8 text-white">
+      <section className="relative bg-gradient-to-r from-[#642c92] to-[#bf34c1] py-20 px-4 sm:px-6 lg:px-8 text-white">
         <div className="relative bg-[#f7f6f2] py-12 md:py-16 px-4 sm:px-6 lg:px-8 border-b-2 border-[#642c92]/20">
           {/* Geometric pattern */}
           <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -331,6 +332,7 @@ const AboutUs = () => {
         </motion.section>
       </div>
       <Footer />
+      <ApplyNowButton />
     </div>
   );
 };

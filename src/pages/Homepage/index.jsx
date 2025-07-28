@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
+import ApplyNowButton from '../../components/common/ApplyNowButton';
 import HeroSection from './HeroSection';
 import JobCategorySection from './JobCategorySection';
 import FeaturedJobsSection from './FeaturedJobsSection';
@@ -31,6 +32,7 @@ const Homepage = () => {
           <WhyChooseUsSection />
           <TestimonialsSection />
           <Footer />
+          <ApplyNowButton />
         </main>
       </div>
     </div>

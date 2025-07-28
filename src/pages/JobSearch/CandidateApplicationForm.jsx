@@ -269,7 +269,7 @@ const CandidateApplicationForm = () => {
             <p className="text-center text-base mb-6">
               Please fill in the details in capital letter
             </p>
-            <p className="text-red-500 text-sm mb-4">* indicates required fields</p>
+            <p className="text-red-500 text-sm mb-4">* Indicates required fields</p>
 
             {/* Personal Details to Job Applied For */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

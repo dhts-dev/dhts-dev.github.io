@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
+import ApplyNowButton from '../../components/common/ApplyNowButton';
 import JobRecommendationsSection from './JobRecommendationsSection';
 
 const JobSearchPage = () => {
@@ -11,6 +12,7 @@ const JobSearchPage = () => {
         <JobRecommendationsSection />
       </main>
       <Footer />
+      <ApplyNowButton />
     </div>
   );
 };
