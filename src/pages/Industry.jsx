@@ -3,14 +3,14 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
 const industries = [
-  { title: 'Construction and Real Estate', image: '/images/construction and real estate.png' },
-  { title: 'Manufacturing and Industrial', image: '/images/Manufacutring and industrial 1.webp' },
-  { title: 'Hospitality and Tourism', image: '/images/hospitality and tourism.png' },
-  { title: 'Healthcare', image: '/images/healthcare.png' },
-  { title: 'Retail and Customer Service', image: '/images/retail and customer service.png' },
-  { title: 'Logistics and Transportation', image: '/images/Logistics & Transportation.webp' },
-  { title: 'Security Services', image: '/images/securityservices.png' },
-  { title: 'Cleaning and Facility Management', image: '/images/clean and facility management.png' },
+  { title: 'Construction and Real Estate', image: '/images/construction-and-real-estate.webp' },
+  { title: 'Manufacturing and Industrial', image: '/images/manufacturing-and-industrial-1.webp' },
+  { title: 'Hospitality and Tourism', image: '/images/hospitality-and-tourism.webp' },
+  { title: 'Healthcare', image: '/images/healthcare.webp' },
+  { title: 'Retail and Customer Service', image: '/images/retail-and-customer-service.webp' },
+  { title: 'Logistics and Transportation', image: '/images/logistics-and-transportation.webp' },
+  { title: 'Security Services', image: '/images/security-services.webp' },
+  { title: 'Cleaning and Facility Management', image: '/images/cleaning-and-facility-management.webp' },
 ];
 
 const Industry = () => {
@@ -23,9 +23,10 @@ const Industry = () => {
         <section className="w-full flex flex-col items-center">
           <div className="w-full max-w-5xl relative mt-2 sm:mt-4 mb-10 sm:mb-12">
             <img
-              src="/images/request a team.jpeg"
+              src="/images/request-a-team.webp"
               alt="Team"
               className="w-full h-52 sm:h-72 md:h-96 object-cover rounded-b-3xl shadow-lg"
+              loading="eager"
             />
 
             {/* Overlay container that centers on mobile, left-aligns on larger screens */}
@@ -47,11 +48,10 @@ const Industry = () => {
             Industries We Serve
           </h2>
           <p className="text-center text-gray-700 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl">
-            Explore job opportunities across sectors - locally and overseas in GCC countries.
+            Explore job opportunities across sectors—locally and overseas in GCC countries.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 w-full max-w-6xl">
-          {/* Increased gap on larger screens, tighter but comfy on mobile */}
             {industries.map((ind, idx) => (
               <div
                 key={idx}
@@ -59,7 +59,7 @@ const Industry = () => {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${ind.image})` }}
+                  style={{ backgroundImage: `url("${ind.image}")` }}
                 ></div>
 
                 {/* Overlay */}
