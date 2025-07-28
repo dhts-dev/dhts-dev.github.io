@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sunvihitech.com/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/current-jobs</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/about-us</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/candidate-application</loc>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/industry</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/login</loc>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/signup</loc>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://sunvihitech.com/privacy-policy</loc>
+    <priority>0.60</priority>
+  </url>
+</urlset>
