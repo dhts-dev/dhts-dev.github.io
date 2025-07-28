@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import ApplyNowButton from '../../components/common/ApplyNowButton';
@@ -16,6 +17,8 @@ const Homepage = () => {
   };
 
   return (
+
+    
     // 🚫 Horizontal overflow fix
     <div className="overflow-x-hidden">
       <div className="min-h-screen bg-global-3">
