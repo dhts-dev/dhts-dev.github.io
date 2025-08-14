@@ -1,65 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/ui/Button';
 
 const CategorySection = () => {
-  const categories = [
-    {
-      id: 1,
-      image: '/image/housekeeper.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 2,
-      image: '/images/img_image_12.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 3,
-      image: '/images/img_image_13.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 4,
-      image: '/images/img_image_14.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 5,
-      image: '/images/img_image_14.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 6,
-      image: '/images/img_image_13.png',
-      backgroundImage: '/images/img_union.svg',
-      title: 'Driver',
-      hasButton: true
-    },
-    {
-      id: 7,
-      image: '/images/img_rectangle.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    },
-    {
-      id: 8,
-      image: '/images/img_image_12.png',
-      backgroundImage: '/images/img_union.svg',
-      title: null,
-      hasButton: false
-    }
-  ];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+   fetch('https://29edf45959f0.ngrok-free.app/api/categories')
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.error('Error fetching categories:', err));
+  }, []);
 
   return (
     <section className="w-full py-8 sm:py-12 lg:py-16">
